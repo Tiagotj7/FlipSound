@@ -1,50 +1,95 @@
-#!/usr/bin/env python3
-import argparse
+import tkinter as tk
+from tkinter import filedialog, messagebox, ttk
 import subprocess
 import os
 
-def convert_media(input_file, output_file, extra_params=None):
-    """
-    Converte o arquivo de entrada para o formato desejado especificado em output_file.
-    extra_params: lista de parâmetros adicionais para o FFmpeg (opcional).
-    """
-    # Comando básico: ffmpeg -y -i input_file [extra_params] output_file
-    command = ["ffmpeg", "-y", "-i", input_file]
-    if extra_params:
-        command.extend(extra_params)
-    command.append(output_file)
-    
-    print("Executando comando:")
-    print(" ".join(command))
-    
-    # Executa o comando e verifica erros
-    subprocess.run(command, check=True)
+# Lista de formatos suportados (extensão e tipo)
+FORMATOS = {
+    "Áudio - MP3": ".mp3",
+    "Áudio - AAC": ".aac",
+    "Áudio - WAV": ".wav",
+    "Áudio - FLAC": ".flac",
+    "Áudio - OGG": ".ogg",
+    "Vídeo - MP4": ".mp4",
+    "Vídeo - MKV": ".mkv",
+    "Vídeo - AVI": ".avi",
+    "Vídeo - MOV": ".mov",
+    "Vídeo - WebM": ".webm",
+}
 
-def main():
-    parser = argparse.ArgumentParser(
-        description="Conversor de mídia (áudio/vídeo) utilizando FFmpeg."
-    )
-    parser.add_argument("input", help="Caminho do arquivo de entrada")
-    parser.add_argument("output", help="Caminho do arquivo de saída com a extensão desejada (ex.: output.mp3, output.mp4, etc.)")
-    parser.add_argument(
-        "--params", 
-        nargs=argparse.REMAINDER, 
-        help="Parâmetros adicionais para o FFmpeg (ex.: -ab 192k, -vf scale=1280:720)",
-        default=[]
-    )
-    args = parser.parse_args()
+def selecionar_entrada():
+    arquivo = filedialog.askopenfilename(title="Selecione o arquivo de entrada")
+    if arquivo:
+        entrada_var.set(arquivo)
+
+def selecionar_saida():
+    # Obtém a extensão escolhida pelo formato
+    ext = FORMATOS.get(formato_var.get(), "")
+    arquivo = filedialog.asksaveasfilename(title="Selecione o local para salvar o arquivo de saída",
+                                           defaultextension=ext,
+                                           filetypes=[("Arquivo convertido", "*" + ext)])
+    if arquivo:
+        saida_var.set(arquivo)
+
+def converter():
+    input_file = entrada_var.get()
+    output_file = saida_var.get()
     
-    # Verifica se o arquivo de entrada existe
-    if not os.path.isfile(args.input):
-        print(f"Arquivo de entrada '{args.input}' não encontrado.")
-        exit(1)
+    if not input_file or not os.path.isfile(input_file):
+        messagebox.showerror("Erro", "Selecione um arquivo de entrada válido!")
+        return
+    if not output_file:
+        messagebox.showerror("Erro", "Selecione um arquivo de saída válido!")
+        return
     
+    # Comando básico: ffmpeg -y -i input_file output_file
+    command = ["ffmpeg", "-y", "-i", input_file, output_file]
     try:
-        convert_media(args.input, args.output, extra_params=args.params)
-        print("Conversão concluída com sucesso!")
+        log_text.delete(1.0, tk.END)
+        log_text.insert(tk.END, "Executando comando:\n" + " ".join(command) + "\n")
+        subprocess.run(command, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        log_text.insert(tk.END, "Conversão concluída com sucesso!")
+        messagebox.showinfo("Sucesso", "Conversão concluída com sucesso!")
     except subprocess.CalledProcessError as e:
-        print("Ocorreu um erro durante a conversão:")
-        print(e)
+        log_text.insert(tk.END, "Erro durante a conversão:\n" + str(e))
+        messagebox.showerror("Erro", "Ocorreu um erro durante a conversão.")
 
-if __name__ == '__main__':
-    main()
+# Configuração da interface com Tkinter
+root = tk.Tk()
+root.title("FlipSound - Conversor de Áudio/Video")
+
+# Variáveis para armazenar caminhos e formato
+entrada_var = tk.StringVar()
+saida_var = tk.StringVar()
+formato_var = tk.StringVar(value=list(FORMATOS.keys())[0])
+
+# Frame para arquivo de entrada
+frame_entrada = tk.Frame(root, pady=5)
+frame_entrada.pack(fill=tk.X)
+tk.Label(frame_entrada, text="Arquivo de Entrada:").pack(side=tk.LEFT, padx=5)
+tk.Entry(frame_entrada, textvariable=entrada_var, width=50).pack(side=tk.LEFT, padx=5)
+tk.Button(frame_entrada, text="Selecionar", command=selecionar_entrada).pack(side=tk.LEFT, padx=5)
+
+# Frame para escolha do formato de saída
+frame_formato = tk.Frame(root, pady=5)
+frame_formato.pack(fill=tk.X)
+tk.Label(frame_formato, text="Formato de Saída:").pack(side=tk.LEFT, padx=5)
+combo = ttk.Combobox(frame_formato, textvariable=formato_var, values=list(FORMATOS.keys()), state="readonly", width=20)
+combo.pack(side=tk.LEFT, padx=5)
+
+# Frame para arquivo de saída
+frame_saida = tk.Frame(root, pady=5)
+frame_saida.pack(fill=tk.X)
+tk.Label(frame_saida, text="Arquivo de Saída:").pack(side=tk.LEFT, padx=5)
+tk.Entry(frame_saida, textvariable=saida_var, width=50).pack(side=tk.LEFT, padx=5)
+tk.Button(frame_saida, text="Selecionar", command=selecionar_saida).pack(side=tk.LEFT, padx=5)
+
+# Botão de conversão
+btn_converter = tk.Button(root, text="Converter", command=converter, width=20, bg="#4CAF50", fg="white")
+btn_converter.pack(pady=10)
+
+# Área para log
+log_text = tk.Text(root, height=10, width=80)
+log_text.pack(padx=5, pady=5)
+
+root.mainloop()
