@@ -205,12 +205,13 @@
     header {
         background-color: white;
         border-radius: 5rem;
-        margin: 1rem;
+        margin: 0.5rem;
+        padding: 0.5rem;
     }
         
     ul {
         display: flex;
-        gap: 5rem;
+        gap: 3rem;
         padding: 0;
         list-style: none;
     }
@@ -219,12 +220,14 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        padding: 0 1rem;
+        gap: 1rem;
     }
         
     .logo img {
         height: 8vw;
         position: relative;
-        left: 150px;
+        left: 100px;
     }
         
     .logo img:hover {
@@ -233,7 +236,7 @@
         
     .icons img {
         height: 3vw;
-        margin-right: 1rem;
+        margin-right: 0.5rem;
     }
         
     .icons img:hover {
@@ -290,7 +293,8 @@
         display: flex;
         justify-content: space-evenly;
         align-items: center;
-        height: 80vh;
+        height: calc(80vh - gopx);
+        margin-top: -100px;
     }
 
     /* ----------------------Converter------------------------- */
