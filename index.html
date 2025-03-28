@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -63,17 +63,12 @@
         <div class="converter-container">
 
             <h5>Escolha o arquivo:</h5>
-            <button class="button-upload" id="upload-button"><p>Upload</p></button>
-            <input type="file" id="file-input" accept="image" style="display: none;">
+            <button class="button-upload" id="upload-button">Upload</button>
 
-            <h5>Escolha o formato do arquivo:</h5>
-            <button class="formato-upload" id="upload-formato"><p>Formato</p></button>
-            <input type="file" id="file-input" accept="image" style="display: none;">
+            <h5>Escolha o formato:</h5>
+            <button class="formato-upload" id="upload-formato">Upload</button>
 
-<div class="download">
-            <button class="converter-download" id="download-converter"><p>Converter</p></button>
-            <input type="file" id="file-input" accept="image" style="display: none;">
-        </div>
+            <button class="converter-download" id="download-converter">Converter</button>
 
         </div>
     
@@ -224,64 +219,47 @@ html, body {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    height: 80vh;
 }
 
 /*----------------------Converter-------------------------*/
 
 .converter-container{
     background-color: #201f33;
-    padding: 100px 150px;
+    padding: 50px 100px;
     border-radius: 50px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    line-height: 5px;
-    gap: 10px;
-}
-
-.converter-container button{
-    background-color: #47d6c2;
-    color: black;
+    gap: 20px;
 }
 
 .converter-container h5{
     color: white;
-    font-size: 12px;
-    margin-left: 0;
+    font-size: 16px;
+    margin: 0;
 }
 
-.button-upload{
-    text-align: center;
+.button-upload, .formato-upload, .converter-download {
+    padding: 10px 30px;
+    border: none;
     border-radius: 10px;
-    align-items: flex-start;
-}
-
-.button-upload p{
-    color: black;
-    font-size: 10px;
-}
-
-.formato-upload{
-    border-radius: 10px;
-}
-
-.formato-upload p{
-    font-size: 12px;
-}
-
-.download{
-    display: flex;
-    justify-content: center;
+    cursor: pointer;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 500;
     width: 100%;
+    text-align: center;
 }
 
-.download button{
+.button-upload, .formato-upload {
+    background-color: #47d6c2;
+    color: black;
+}
+
+.converter-download {
     background-color: #fafb63;
-}
-
-.converter-download{
-    border-radius: 10px;
-    font-size: 20px;
+    font-size: 18px;
+    margin-top: 10px;
 }
 
 /*----------------------Text-------------------------*/
@@ -301,8 +279,8 @@ html, body {
 .space-layout{
     background-color: white;
     padding: 2px;
+    margin: 10px 0;
 }
-
 
 </style>
 
