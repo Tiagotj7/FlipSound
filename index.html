@@ -4,102 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="style.css">
-    <script src=""></script>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
     <title>Flip Sound</title>
-</head>
-<body>
-
-    <!-- Barra lateral e ícone de menu -->
-     
-    <div class="sidebar-toggle">
-        <div class="hamburger" id="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-    </div>
-
-    <div class="sidebar" id="sidebar">
-        <div class="login-form">
-            <h3>Login</h3>
-            <form>
-                <input type="text" placeholder="Usuário" required>
-                <input type="password" placeholder="Senha" required>
-                <button type="submit">Entrar</button>
-            </form>
-        </div>
-    </div>
-    <header>
-        <div class="nav-bar">
-            <nav class="logo">
-                <img src="src/logo flip 3.png" alt="Logo Flip Sound">
-            </nav>
-                
-            <nav class="names">
-                <menu>
-                    <ul>
-                        <li>Comunidade</li>
-                        <li>API</li>
-                        <li>Sobre</li>
-                        <li>Ajuda</li>
-                    </ul>
-                </menu>
-            </nav>
-            
-            <nav class="icons">
-                <menu>
-                    <a href="https://github.com/Tiagotj7/FlipSound" target="_blank">
-                        <img src="src/github logo.png" alt="GitHub">
-                    </a>
-                    <a href="https://www.linkedin.com/in/tiagocarvalhog2020/" target="_blank">
-                        <img src="src/linkedin logo 2.png" alt="Linkedin">
-                    </a>
-                </menu>
-            </nav>
-        </div>
-    </header>  
-
-    <!-- Hero Section -->
-    <div class="video-background">
-        <video autoplay loop muted>
-            <source src="src/Video Flip Soun.mp4" type="video/mp4">
-            Seu navegador não suporta a tag de vídeo.
-        </video>
-    </div>
-
-    <div class="geral-container">
-        <div class="converter-container">
-            <div class="logo-paste-converter">
-                <img src="src/logo paste flip.png" alt="logo-paste">
-            </div>
-
-            <div class="converter-content">
-                <div class="divs-groups">
-                    <div class="upload-group1">
-                        <h5>Escolha o arquivo:</h5>
-                        <button class="button-upload" id="upload-button">Upload</button>
-                    </div>
-
-                    <div class="upload-group2">
-                        <h5>Escolha o formato:</h5>
-                        <button class="formato-upload" id="upload-formato">Upload</button>
-                    </div>
-                </div>
-
-                <button class="converter-download" id="download-converter">Converter</button>
-            </div>
-        </div>
-
-        <div class="text-layout">
-            <h1>Flip</h1>
-            <div class="space-layout"></div>
-            <h1>Sound</h1>
-            <h3>Conversor de Áudio/Video!!!</h3>
-        </div>
-    </div>
-
     <style>
     html, body {
         height: 100%;
@@ -117,11 +23,15 @@
         margin: 1rem;
     }
 
+    main{
+        flex: 1;
+    }
+
     /* ---------------------- Sidebar e Menu Hamburguer ---------------------- */
     .sidebar-toggle {
         position: relative;
-        top: 100px;
-        left: 100px;
+        top: 95px;
+        left: 80px;
         z-index: 1000;
         cursor: pointer;
     }
@@ -154,31 +64,74 @@
         transition: all 0.3s ease;
         padding: 20px;
         box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
     }
 
     .sidebar.active {
         left: 0;
     }
 
-    .login-form {
-        margin-top: 50px;
+    .login-register-buttons {
         display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+
+    .login-register-buttons button {
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+        font-family: 'Orbitron', sans-serif;
+    }
+
+    .btn-login {
+        background-color: #2d2b44;
+        color: whitesmoke;
+    }
+
+    .btn-login:hover{
+        border-color: #47d6c2;
+    }
+
+    .btn-register {
+        background-color: #fafb63;
+        color: black;
+    }
+
+    .btn-register:hover{
+        border-color: whitesmoke;
+    }
+
+    .login-form {
+        display: none;
         flex-direction: column;
         gap: 15px;
     }
 
-    .login-form input {
+    .register-form {
+        display: none;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .login-form.active, .register-form.active {
+        display: flex;
+    }
+
+    .login-form input, .register-form input {
         padding: 10px;
         border-radius: 5px;
         border: none;
         background-color: #2d2b44;
         color: white;
+        display: flex;
     }
 
-    .login-form button {
+    .login-form button, .register-form button {
         padding: 10px;
         border-radius: 5px;
-        border: none;
         background-color: #47d6c2;
         color: black;
         cursor: pointer;
@@ -186,21 +139,14 @@
         margin-top: 10px;
     }
 
-    .sidebar.active ~ .sidebar-toggle .hamburger span:nth-child(1) {
-        transform: rotate(45deg) translate(5px, 5px);
+    .login-form button:hover , .register-form button:hover{
+        border-color: whitesmoke;
     }
 
-    .sidebar.active ~ .sidebar-toggle .hamburger span:nth-child(2) {
-        opacity: 0;
-    }
-
-    .sidebar.active ~ .sidebar-toggle .hamburger span:nth-child(3) {
-        transform: rotate(-45deg) translate(7px, -6px);
-    }
-
-    /* Adicione esta regra para o hover do hamburger */
-    .hamburger:hover span {
-        background-color: #47d6c2;
+    form{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
     }
 
     /* ------------------------Nav------------------------ */
@@ -213,7 +159,7 @@
         
     ul {
         display: flex;
-        gap: 3rem;
+        gap: 8rem;
         padding: 0;
         list-style: none;
     }
@@ -221,19 +167,19 @@
     .nav-bar {
         display: flex;
         justify-content: space-between;
-        align-items: center;
-        padding: 0 1rem;
-        gap: 1rem;
+        align-items: center;  
+        padding: 0 2rem;
+        gap: 5px;
     }
         
     .logo img {
         height: 8vw;
         position: relative;
-        left: 100px;
+        left: 120px;
     }
         
     .logo img:hover {
-        transform: scale(1.1);
+        transform: scale(2.2);
     }
         
     .icons img {
@@ -295,8 +241,7 @@
         display: flex;
         justify-content: space-evenly;
         align-items: center;
-        height: calc(80vh - gopx);
-        margin-top: -100px;
+        height: calc(80vh - 5vh);
     }
 
     /* ----------------------Converter------------------------- */
@@ -402,10 +347,164 @@
         margin: 10px 0;
     }
     </style>
+</head>
+<body>
+    <!-- Barra lateral e ícone de menu -->
+    <div class="sidebar-toggle">
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <div class="sidebar" id="sidebar">
+        <div class="login-register-buttons">
+            <button class="btn-login" id="show-login">Login</button>
+            <button class="btn-register" id="show-register">Cadastro</button>
+        </div>
+
+        <div class="login-form" id="login-form">
+            <h3>Login</h3>
+            <form>
+                <input type="text" placeholder="Usuário" required>
+                <input type="password" placeholder="Senha" required>
+                <button type="submit">Entrar</button>
+            </form>
+        </div>
+
+        <div class="register-form" id="register-form">
+            <h3>Cadastro</h3>
+            <form>
+                <input type="text" placeholder="Nome Completo" required>
+                <input type="email" placeholder="E-mail" required>
+                <input type="password" placeholder="Senha" required>
+                <input type="password" placeholder="Confirmar Senha" required>
+                <button type="submit">Cadastrar</button>
+            </form>
+        </div>
+    </div>
+
+    <main>
+        <header>
+            <div class="nav-bar">
+                <nav class="logo">
+                    <img src="src/logo flip 3.png" alt="Logo Flip Sound">
+                </nav>
+                    
+                <nav class="names">
+                    <menu>
+                        <ul>
+                            <li>Comunidade</li>
+                            <li>API</li>
+                            <li>Sobre</li>
+                            <li>Ajuda</li>
+                        </ul>
+                    </menu>
+                </nav>
+                
+                <nav class="icons">
+                    <menu>
+                        <a href="https://github.com/Tiagotj7/FlipSound" target="_blank">
+                            <img src="src/github logo.png" alt="GitHub">
+                        </a>
+                        <a href="https://www.linkedin.com/in/tiagocarvalhog2020/" target="_blank">
+                            <img src="src/linkedin logo 2.png" alt="Linkedin">
+                        </a>
+                    </menu>
+                </nav>
+            </div>
+        </header>  
+
+        <!-- Hero Section -->
+        <div class="video-background">
+            <video autoplay loop muted>
+                <source src="src/Video Flip Soun.mp4" type="video/mp4">
+                Seu navegador não suporta a tag de vídeo.
+            </video>
+        </div>
+
+        <div class="geral-container">
+            <div class="converter-container">
+                <div class="logo-paste-converter">
+                    <img src="src/logo paste flip.png" alt="logo-paste">
+                </div>
+
+                <div class="converter-content">
+                    <div class="divs-groups">
+                        <div class="upload-group1">
+                            <h5>Escolha o arquivo:</h5>
+                            <button class="button-upload" id="upload-button">Upload</button>
+                        </div>
+
+                        <div class="upload-group2">
+                            <h5>Escolha o formato:</h5>
+                            <button class="formato-upload" id="upload-formato">Upload</button>
+                        </div>
+                    </div>
+
+                    <button class="converter-download" id="download-converter">Converter</button>
+                </div>
+            </div>
+
+            <div class="text-layout">
+                <h1>Flip</h1>
+                <div class="space-layout"></div>
+                <h1>Sound</h1>
+                <h3>Conversor de Áudio/Video!!!</h3>
+            </div>
+        </div>
+    </main>
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Função de upload de arquivo
+        // Sidebar toggle functionality
+        const hamburger = document.getElementById('hamburger');
+        const sidebar = document.getElementById('sidebar');
+        const sidebarToggle = document.querySelector('.sidebar-toggle');
+        
+        // Login and Register buttons
+        const showLoginBtn = document.getElementById('show-login');
+        const showRegisterBtn = document.getElementById('show-register');
+        const loginForm = document.getElementById('login-form');
+        const registerForm = document.getElementById('register-form');
+
+        if (hamburger && sidebar && sidebarToggle) {
+            hamburger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                sidebar.classList.add('active');
+                sidebarToggle.style.display = 'none';
+                
+                // Default to login form when sidebar opens
+                loginForm.classList.add('active');
+                registerForm.classList.remove('active');
+            });
+
+            // Close sidebar when clicking outside
+            document.addEventListener('click', (event) => {
+                if (!sidebar.contains(event.target) && 
+                    event.target !== hamburger && 
+                    !hamburger.contains(event.target)) {
+                    sidebar.classList.remove('active');
+                    sidebarToggle.style.display = 'block';
+                }
+            });
+
+            // Toggle between login and register forms in sidebar
+            showLoginBtn.addEventListener('click', () => {
+                loginForm.classList.add('active');
+                registerForm.classList.remove('active');
+            });
+
+            showRegisterBtn.addEventListener('click', () => {
+                registerForm.classList.add('active');
+                loginForm.classList.remove('active');
+            });
+        } else {
+            console.error('Elementos da sidebar não encontrados!');
+        }
+
+        // Upload button functionality
         document.getElementById('upload-button')?.addEventListener('click', () => {
             document.getElementById('file-input')?.click();
         });
@@ -416,28 +515,6 @@
                 console.log('Arquivo escolhido:', file.name);
             }
         });
-
-        // Controle da sidebar - verifique se os elementos existem
-        const hamburger = document.getElementById('hamburger');
-        const sidebar = document.getElementById('sidebar');
-        
-        if (hamburger && sidebar) {
-            hamburger.addEventListener('click', (e) => {
-                e.stopPropagation(); // Impede que o evento chegue ao document
-                sidebar.classList.toggle('active');
-            });
-
-            // Fechar a sidebar ao clicar fora
-            document.addEventListener('click', (event) => {
-                if (!sidebar.contains(event.target) && 
-                    event.target !== hamburger && 
-                    !hamburger.contains(event.target)) {
-                    sidebar.classList.remove('active');
-                }
-            });
-        } else {
-            console.error('Elementos da sidebar não encontrados!');
-        }
     });
     </script>
 </body>
