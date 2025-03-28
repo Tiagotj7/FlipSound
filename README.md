@@ -1,4 +1,3 @@
-# ```markdown
 # FlipSound - Conversor de Áudio/Video
 
 FlipSound é um aplicativo desktop simples, elegante e poderoso para conversão de arquivos de áudio e vídeo utilizando o FFmpeg. Desenvolvido em Python com interface gráfica em Tkinter, o FlipSound oferece uma solução rápida e intuitiva para transformar seus arquivos multimídia para os formatos mais populares – inclusive DivX!
