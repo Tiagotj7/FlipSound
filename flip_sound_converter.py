@@ -15,6 +15,7 @@ FORMATOS = {
     "Vídeo - AVI": ".avi",
     "Vídeo - MOV": ".mov",
     "Vídeo - WebM": ".webm",
+    "Vídeo - DivX": ".avi",  # Novo formato para DivX
 }
 
 def selecionar_entrada():
@@ -30,13 +31,24 @@ def converter():
         return
 
     # Gera o caminho do arquivo de saída automaticamente
-    ext = FORMATOS.get(formato_var.get(), "")
+    formato_escolhido = formato_var.get()
+    ext = FORMATOS.get(formato_escolhido, "")
     base = os.path.splitext(input_file)[0]
     output_file = base + ext
 
-    # Comando básico: ffmpeg -y -i input_file output_file
-    command = ["ffmpeg", "-y", "-i", input_file, output_file]
-    
+    # Define o comando conforme o formato escolhido
+    if formato_escolhido == "Vídeo - DivX":
+        # Conversão para DivX com opções específicas
+        command = [
+            "ffmpeg", "-y", "-i", input_file,
+            "-c:v", "mpeg4", "-vtag", "DIVX", "-b:v", "1500k",
+            "-c:a", "mp3", "-b:a", "192k",
+            output_file
+        ]
+    else:
+        # Comando básico para os outros formatos
+        command = ["ffmpeg", "-y", "-i", input_file, output_file]
+
     try:
         log_text.delete(1.0, tk.END)
         log_text.insert(tk.END, "Executando comando:\n" + " ".join(command) + "\n")
@@ -51,7 +63,7 @@ def converter():
 root = tk.Tk()
 root.title("FlipSound - Conversor de Áudio/Video")
 
-# Variável para armazenar o caminho do arquivo de entrada
+# Variáveis para armazenar o caminho do arquivo de entrada e o formato selecionado
 entrada_var = tk.StringVar()
 formato_var = tk.StringVar(value=list(FORMATOS.keys())[0])
 
