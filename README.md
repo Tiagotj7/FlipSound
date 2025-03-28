@@ -95,7 +95,7 @@ python flip_sound_gui.py
 
 ## 🤝 Contribuições
 
-Contribuições são bem-vindas! Sinta-se à vontade para enviar pull requests, abrir issues ou sugerir melhorias.
+Contribuições são bem-vindas! Sinta-se à vontade para sugerir melhorias.
 
 ---
 
@@ -114,4 +114,4 @@ Distribuído sob a Licença MIT. Veja o arquivo [LICENSE](https://github.com/Tia
 
 ---
 
-FlipSound é a solução ideal para quem busca uma ferramenta simples, eficiente e moderna para conversão de mídia. Transforme seus arquivos com qualidade e agilidade!
+FlipSound é a solução ideal para quem busca uma ferramenta simples, eficiente e moderna para conversão de mídia. Transforme seus arquivos com qualidade e agilidade!🔊🎶🎚️
