@@ -62,11 +62,15 @@
 
         <div class="converter-container">
 
+            <div class="upload-group">
             <h5>Escolha o arquivo:</h5>
             <button class="button-upload" id="upload-button">Upload</button>
+        </div>
 
+        <div class="upload-group">
             <h5>Escolha o formato:</h5>
             <button class="formato-upload" id="upload-formato">Upload</button>
+        </div>
 
             <button class="converter-download" id="download-converter">Converter</button>
 
@@ -226,12 +230,12 @@ html, body {
 
 .converter-container{
     background-color: #201f33;
-    padding: 50px 100px;
+    padding: 50px;
     border-radius: 50px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 20px;
+    gap: 25px;
+    width: 100%;
 }
 
 .converter-container h5{
@@ -254,12 +258,27 @@ html, body {
 .button-upload, .formato-upload {
     background-color: #47d6c2;
     color: black;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 500;
+    text-align: center;
+    width: auto; /* Largura automática para ficar alinhado à esquerda */
 }
 
 .converter-download {
     background-color: #fafb63;
     font-size: 18px;
     margin-top: 10px;
+}
+
+.upload-group{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    width: 100%;
 }
 
 /*----------------------Text-------------------------*/
