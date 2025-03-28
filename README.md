@@ -87,7 +87,7 @@ python flip_sound_gui.py
 
 ## 🎨 Demonstração
 
-![FlipSound Demo](/FlipSound/assets/Flip_Sound_Logo.png)
+![FlipSound Demo](https://imgs.search.brave.com/jJ5UQJwt8hFWSntb-2aHUfqedt_WqQ2BnP4JzXsMmcI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJzLmNvbS93/cC1jb250ZW50L3Ro/ZW1lcy93YWxscGFw/ZXJzLmNvbS9zcmMv/c3BsYXNoLW4uanBn)
 
 *Exemplo da interface gráfica do FlipSound em ação.*
 
