@@ -109,8 +109,8 @@ Distribuído sob a Licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais det
 
 **Desenvolvedor:** Tiagotj7  
 **E-mail:** tiagotj7dev@gmail.com  
-**LinkedIn:** [seu-linkedin](https://www.linkedin.com/in/tiagocarvalhog2020/)  
-**GitHub:** [seu-usuario](https://github.com/Tiagotj7/FlipSound)
+**LinkedIn:** [Tiago Carvalho](https://www.linkedin.com/in/tiagocarvalhog2020/)  
+**GitHub:** [Tiagotj7](https://github.com/Tiagotj7/FlipSound)
 
 ---
 
