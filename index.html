@@ -62,7 +62,10 @@
             </video>
         </div>
 
-
+        <div class="converter-container">
+            <button class="button-upload" id="upload-button">Upload</button>
+            <input type="file" id="file-input" accept="image" style="display: none;">
+        </div>
     
     
 </body>
@@ -204,3 +207,18 @@ html, body {
 /*teste*/
 
 </style>
+
+<script>
+    // Função de upload de arquivo
+    document.getElementById('upload-button').addEventListener('click', () => {
+      document.getElementById('file-input').click();
+    });
+
+    document.getElementById('file-input').addEventListener('change', (event) => {
+      const file = event.target.files[0];
+      if (file) {
+        console.log('Arquivo escolhido:', file.name);
+      }
+    });
+
+</script>
