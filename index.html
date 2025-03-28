@@ -15,8 +15,6 @@
 </head>
 <body>
 
-    <main>
-
     <header>
 
         <div class="nav-bar">
@@ -51,8 +49,6 @@
         
         </header>  
 
-    </main>
-
             <!-- Hero Section -->
 
         <div class="video-background">
@@ -66,7 +62,7 @@
 
         <div class="converter-container">
             <h5>Escolha o arquivo:</h5>
-            <button class="button-upload" id="upload-button">Upload</button>
+            <button class="button-upload" id="upload-button"><p>Upload</p></button>
             <input type="file" id="file-input" accept="image" style="display: none;">
         </div>
     
@@ -101,10 +97,6 @@ body{
     margin: 1rem;
 }
 
-main{
-    flex: 1; /* Faz com que o conteúdo ocupe o espaço restante */
-}
-    
 /*------------------------Nav------------------------*/
 
 header{
@@ -227,10 +219,8 @@ html, body {
 
 .converter-container{
     background-color: #201f33;
-    display: flex;
-    margin: 1rem;
-    padding: 8rem;
-    width: 12rem;
+    padding: 100px 150px;
+
     border-radius: 50px;
 }
 
@@ -241,6 +231,18 @@ html, body {
 
 .converter-container h5{
     color: white;
+    font-size: 12px;
+}
+
+.button-upload{
+    text-align: center;
+    border-radius: 10px;
+
+}
+
+.button-upload p{
+    color: black;
+    font-size: 10px;
 }
 
 /*----------------------Text-------------------------*/
