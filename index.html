@@ -62,6 +62,12 @@
 
         <div class="converter-container">
 
+            <div class="logo-paste-converter">
+                <img src="src/logo paste flip.png" alt="logo-paste">
+            </div>
+
+            <div class="converter-content">
+
             <div class="upload-group">
             <h5>Escolha o arquivo:</h5>
             <button class="button-upload" id="upload-button">Upload</button>
@@ -75,7 +81,8 @@
             <button class="converter-download" id="download-converter">Converter</button>
 
         </div>
-    
+    </div>
+
         <div class="text-layout">
             <h1>Flip</h1>
             <div class="space-layout"></div>
@@ -236,6 +243,7 @@ html, body {
     flex-direction: column;
     gap: 25px;
     width: 25%;
+    position: relative; /* Para posicionamento absoluto da logo */
 }
 
 .converter-container h5{
@@ -279,6 +287,20 @@ html, body {
     align-items: flex-start;
     gap: 10px;
     width: 100%;
+}
+
+.logo-paste-converter{
+    position: absolute;
+    top: 40px;
+    right: 40px;
+}
+
+.logo-paste-converter img{
+    height: 8vw;
+}
+
+.converter-content{
+    margin-top: 1px; /* Espaço para a logo */;
 }
 
 /*----------------------Text-------------------------*/
