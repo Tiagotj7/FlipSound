@@ -62,12 +62,23 @@
             </video>
         </div>
 
+        <div class="geral-container">
+
         <div class="converter-container">
+            <h5>Escolha o arquivo:</h5>
             <button class="button-upload" id="upload-button">Upload</button>
             <input type="file" id="file-input" accept="image" style="display: none;">
         </div>
     
-    
+        <div class="text-layout">
+            <h1>Flip</h1>
+            <div class="space-layout"></div>
+            <h1>Sound</h1>
+            <h3>Conversor de Áudio/Video!!!</h3>
+        </div>
+    </div>
+
+
 </body>
 </html>
 
@@ -91,7 +102,7 @@ body{
 }
 
 main{
-    flex: 1; /* Faz com que o conteúdo ocupe o espaço restante */
+    /*flex: 1;  Faz com que o conteúdo ocupe o espaço restante */
 }
     
 /*------------------------Nav------------------------*/
@@ -139,7 +150,7 @@ ul{
 }
     
 li:hover{
-    color: red;
+    color: #5bd0b1;
     transform: scale(1.1);
 }
 
@@ -204,7 +215,53 @@ html, body {
     }
 }
 
-/*teste*/
+/*----------------------Geral-Body-------------------------*/
+
+.geral-container{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+/*----------------------Converter-------------------------*/
+
+.converter-container{
+    background-color: #201f33;
+    display: flex;
+    margin: 5rem;
+    padding: 15rem;
+    width: 5rem;
+    border-radius: 50px;
+}
+
+.converter-container button{
+    background-color: #47d6c2;
+    color: black;
+}
+
+.converter-container h5{
+    color: white;
+}
+
+/*----------------------Text-------------------------*/
+
+.text-layout{
+    color: white;
+    flex-direction: column;
+    text-align: center;
+    font-size: 5rem;
+    line-height: 1rem;
+}
+
+.text-layout h3{
+    font-size: 3rem;
+}
+
+.space-layout{
+    background-color: white;
+    padding: 2px;
+}
+
 
 </style>
 
