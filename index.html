@@ -61,9 +61,20 @@
         <div class="geral-container">
 
         <div class="converter-container">
+
             <h5>Escolha o arquivo:</h5>
             <button class="button-upload" id="upload-button"><p>Upload</p></button>
             <input type="file" id="file-input" accept="image" style="display: none;">
+
+            <h5>Escolha o formato do arquivo:</h5>
+            <button class="formato-upload" id="upload-formato"><p>Formato</p></button>
+            <input type="file" id="file-input" accept="image" style="display: none;">
+
+<div class="download">
+            <button class="converter-download" id="download-converter"><p>Converter</p></button>
+            <input type="file" id="file-input" accept="image" style="display: none;">
+        </div>
+
         </div>
     
         <div class="text-layout">
@@ -220,8 +231,12 @@ html, body {
 .converter-container{
     background-color: #201f33;
     padding: 100px 150px;
-
     border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    line-height: 5px;
+    gap: 10px;
 }
 
 .converter-container button{
@@ -232,17 +247,37 @@ html, body {
 .converter-container h5{
     color: white;
     font-size: 12px;
+    margin-left: 0;
 }
 
 .button-upload{
     text-align: center;
     border-radius: 10px;
-
+    align-items: flex-start;
 }
 
 .button-upload p{
     color: black;
     font-size: 10px;
+}
+
+.formato-upload{
+    border-radius: 10px;
+}
+
+.formato-upload p{
+    font-size: 12px;
+}
+
+.download{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.converter-download{
+    border-radius: 10px;
+    font-size: 20px;
 }
 
 /*----------------------Text-------------------------*/
