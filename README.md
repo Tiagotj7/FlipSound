@@ -101,7 +101,7 @@ Contribuições são bem-vindas! Sinta-se à vontade para enviar pull requests, 
 
 ## 📜 Licença
 
-Distribuído sob a Licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+Distribuído sob a Licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes consulte [este artigo](https://pt.wikipedia.org/wiki/Licen%C3%A7a_MIT).
 
 ---
 
