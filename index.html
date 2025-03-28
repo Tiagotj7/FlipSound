@@ -3,107 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
     <script src=""></script>
-
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
-
     <title>Flip Sound</title>
-
 </head>
 <body>
+    <!-- Barra lateral e ícone de menu -->
+    <div class="sidebar-toggle">
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <div class="sidebar" id="sidebar">
+        <div class="login-form">
+            <h3>Login</h3>
+            <form>
+                <input type="text" placeholder="Usuário" required>
+                <input type="password" placeholder="Senha" required>
+                <button type="submit">Entrar</button>
+            </form>
+        </div>
+    </div>
 
     <header>
-
         <div class="nav-bar">
-
-<!-- Barra lateral e ícone de menu -->
-<div class="sidebar-toggle">
-    <div class="music" id="music">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
-</div>
-            <div class="sidebar" id="sidebar">
-                <div class="login-form">
-                    <h3>login</h3>
-                    <form action="">
-                        <input type="text" placeholder="Usuário" required>
-                        <input type="password" placeholder="Senha" required>
-                        <button type="submit">Entrar</button>
-                    </form>
-                </div>
-            </div>
-        
-        <nav class="logo">
-            <img src="src/logo flip 3.png" alt="Logo Flip Sound" srcset="">
-        </nav>
+            <nav class="logo">
+                <img src="src/logo flip 3.png" alt="Logo Flip Sound">
+            </nav>
+                
+            <nav class="names">
+                <menu>
+                    <ul>
+                        <li>Comunidade</li>
+                        <li>API</li>
+                        <li>Sobre</li>
+                        <li>Ajuda</li>
+                    </ul>
+                </menu>
+            </nav>
             
-        <nav class="names">
-            <menu>
-                <ul>
-                    <li>Comunidade</li>
-                    <li>API</li>
-                    <li>Sobre</li>
-                    <li>Ajuda</li>
-                </ul>
-            </menu>
-        </nav>
-        
-        <nav class="icons">
-            <menu>
-                <a href="https://github.com/Tiagotj7/FlipSound" target="_blank">
-                    <img src="src/github logo.png" alt="GitHub" srcset="">
-                </a>
-                <a href="https://www.linkedin.com/in/tiagocarvalhog2020/" target="_blank">
-                    <img src="src/linkedin logo 2.png" alt="Linkedin" srcset="">
-                </a>
-            </menu>
-        </nav>
-        
+            <nav class="icons">
+                <menu>
+                    <a href="https://github.com/Tiagotj7/FlipSound" target="_blank">
+                        <img src="src/github logo.png" alt="GitHub">
+                    </a>
+                    <a href="https://www.linkedin.com/in/tiagocarvalhog2020/" target="_blank">
+                        <img src="src/linkedin logo 2.png" alt="Linkedin">
+                    </a>
+                </menu>
+            </nav>
         </div>
-        
-        </header>  
+    </header>  
 
-            <!-- Hero Section -->
+    <!-- Hero Section -->
+    <div class="video-background">
+        <video autoplay loop muted>
+            <source src="src/Video Flip Soun.mp4" type="video/mp4">
+            Seu navegador não suporta a tag de vídeo.
+        </video>
+    </div>
 
-        <div class="video-background">
-            <video autoplay loop muted>
-                <source src="src/Video Flip Soun.mp4" type="video/mp4">
-                Seu navegador não suporta a tag de vídeo.
-            </video>
-        </div>
-
-        <div class="geral-container">
-
+    <div class="geral-container">
         <div class="converter-container">
-
             <div class="logo-paste-converter">
                 <img src="src/logo paste flip.png" alt="logo-paste">
             </div>
 
             <div class="converter-content">
+                <div class="divs-groups">
+                    <div class="upload-group1">
+                        <h5>Escolha o arquivo:</h5>
+                        <button class="button-upload" id="upload-button">Upload</button>
+                    </div>
 
-<div class="divs-groups">
+                    <div class="upload-group2">
+                        <h5>Escolha o formato:</h5>
+                        <button class="formato-upload" id="upload-formato">Upload</button>
+                    </div>
+                </div>
 
-            <div class="upload-group1">
-            <h5>Escolha o arquivo:</h5>
-            <button class="button-upload" id="upload-button">Upload</button>
+                <button class="converter-download" id="download-converter">Converter</button>
+            </div>
         </div>
-
-        <div class="upload-group2">
-            <h5>Escolha o formato:</h5>
-            <button class="formato-upload" id="upload-formato">Upload</button>
-        </div>
-    </div>
-
-            <button class="converter-download" id="download-converter">Converter</button>
-
-        </div>
-    </div>
 
         <div class="text-layout">
             <h1>Flip</h1>
@@ -113,365 +99,329 @@
         </div>
     </div>
 
+    <style>
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Orbitron', sans-serif;
+        font-weight: 700;
+        color: white;
+    }
 
-</body>
-</html>
+    body {
+        display: flex;
+        flex-direction: column;
+        margin: 1rem;
+    }
 
-<style>
+    /* ---------------------- Sidebar e Menu Hamburguer ---------------------- */
+    .sidebar-toggle {
+        position: fixed;
+        top: 30px;
+        left: 30px;
+        z-index: 1000;
+        cursor: pointer;
+    }
 
-html,body{
-    height: 100%; /* Garante que a altura do body ocupe toda a tela */
-    margin: 0; /* Remove margens padrão */
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 700; /* Deixa em Negrito */
-    height: 100vh;
-    color: white;
-}
+    .hamburger {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 21px;
+    }
 
-body{
-    display: flex;
-    flex-direction: column;
-    margin: 1rem;
-}
+    .hamburger span {
+        display: block;
+        height: 3px;
+        width: 100%;
+        background-color: white;
+        border-radius: 3px;
+        transition: all 0.3s ease;
+    }
 
-/*------------------------Sidebar------------------------*/
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: -300px;
+        width: 250px;
+        height: 100vh;
+        background-color: #201f33;
+        z-index: 999;
+        transition: all 0.3s ease;
+        padding: 20px;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    }
 
-.sidebar-toggle{
-    position: fixed;
-    top: 30px;
-    left: 30px;
-    z-index: 1000;
-    cursor: pointer;
-}
+    .sidebar.active {
+        left: 0;
+    }
 
-.music{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 30px;
-    height: 21px;
-}
+    .login-form {
+        margin-top: 50px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
 
-.music span{
-    display: block;
-    height: 3px;
-    width: 100%;
-    background-color: white;
-    border-radius: 3px;
-    transition: all 0.3 ease;
-}
+    .login-form input {
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        background-color: #2d2b44;
+        color: white;
+    }
 
-.sidebar{
-    position: fixed;
-    top: 0;
-    left: -300px;
-    width: 250px;
-    height: 100vh;
-    background-color: #201f33;
-    z-index: 999;
-    transition: all0.3 ease;
-    padding: 20px;
-    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
-}
+    .login-form button {
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        background-color: #47d6c2;
+        color: black;
+        cursor: pointer;
+        font-weight: bold;
+        margin-top: 10px;
+    }
 
-.sidebar:active{
-    left: 0;
-}
+    .sidebar.active + .sidebar-toggle .hamburger span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
 
-.login-forms{
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.login-forms input{
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-    background-color: #2d2b44;
-    color: white;
-}
-
-.login-forms button{
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-    background-color: #47d6c2;
-    color: black;
-    cursor: pointer;
-    font-weight: bold;
-    margin-top: 10px;
-}
-
-.sidebar.sidebar:active + .sidebar-toogle .music span:nth-child(1){
-    transform: rotate(45deg) translate(5px, 5px);
-}
-
-.sidebar.sidebar:active + .sidebar-toogle .music span:nth-child(2){
-    opacity: 0;
-}
-
-.sidebar.sidebar:active + .sidebar-toogle .music span:nth-child(3){
-    transform: rotate(-45deg) translate(7px, -6px);
-}
-
-/*------------------------Nav------------------------*/
-
-header{
-    background-color: white;
-    border-radius: 5rem;
-    margin: 1rem;
-}
-    
-ul{
-    display: flex;
-    gap: 5rem;
-    padding: 0;
-    list-style: none;
-}
-    
-.nav-bar{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-    
-.logo img{
-    height: 8vw;
-    position: relative;
-    left: 180px;
-}
-    
-.logo img:hover{
-    transform: scale(1.1);
-}
-    
-.icons img{
-    height: 3vw;
-    margin-right: 1rem;
-}
-    
-.icons img:hover{
-    transform: scale(1.1);
-}
-    
-.names li{
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: black;
-}
-    
-li:hover{
-    color: #5bd0b1;
-    transform: scale(1.1);
-}
-
-/*---------------------Hero Section----------------------- */
-
-html, body {
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    overflow: hidden;
-    position: relative;
-}
-
-.video-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1; /* Coloca o vídeo atrás de todo o conteúdo */
-    pointer-events: none; /* Evita que o vídeo interfira em cliques */
-}
-
-.video-background video {
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    object-fit: cover; /* Garante que o vídeo cubra toda a tela */
-}
-
-/* Adicione uma camada semi-transparente para melhorar a legibilidade do conteúdo */
-.video-background::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.5); /* Escurece um pouco o vídeo */
-    z-index: 1;
-}
-
-/* Resto do seu conteúdo deve ficar acima do vídeo */
-.content {
-    position: relative;
-    z-index: 2;
-}
-
-@keyframes fadeInUp {
-    from {
+    .sidebar.active + .sidebar-toggle .hamburger span:nth-child(2) {
         opacity: 0;
-        transform: translateY(50px);
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+
+    .sidebar.active + .sidebar-toggle .hamburger span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
     }
-}
 
-/*----------------------Geral-Body-------------------------*/
+    /* ------------------------Nav------------------------ */
+    header {
+        background-color: white;
+        border-radius: 5rem;
+        margin: 1rem;
+    }
+        
+    ul {
+        display: flex;
+        gap: 5rem;
+        padding: 0;
+        list-style: none;
+    }
+        
+    .nav-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+        
+    .logo img {
+        height: 8vw;
+        position: relative;
+        left: 180px;
+    }
+        
+    .logo img:hover {
+        transform: scale(1.1);
+    }
+        
+    .icons img {
+        height: 3vw;
+        margin-right: 1rem;
+    }
+        
+    .icons img:hover {
+        transform: scale(1.1);
+    }
+        
+    .names li {
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: black;
+    }
+        
+    li:hover {
+        color: #5bd0b1;
+        transform: scale(1.1);
+    }
 
-.geral-container{
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    height: 80vh;
-}
+    /* ---------------------Hero Section----------------------- */
+    .video-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        pointer-events: none;
+    }
 
-/*----------------------Converter-------------------------*/
+    .video-background video {
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        object-fit: cover;
+    }
 
-.converter-container{
-    background-color: #201f33;
-    padding: 50px;
-    border-radius: 50px;
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-    width: 25%;
-    position: relative; /* Para posicionamento absoluto da logo */
-}
+    .video-background::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+        z-index: 1;
+    }
 
-.converter-container h5{
-    color: white;
-    font-size: 16px;
-    margin: 0;
-}
+    /* ----------------------Geral-Body------------------------- */
+    .geral-container {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        height: 80vh;
+    }
 
-.button-upload, .formato-upload, .converter-download {
-    padding: 10px 30px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 500;
-    width: 100%;
-    text-align: center;
-}
+    /* ----------------------Converter------------------------- */
+    .converter-container {
+        background-color: #201f33;
+        padding: 50px;
+        border-radius: 50px;
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        width: 25%;
+        position: relative;
+    }
 
-.button-upload:active, .formato-upload:active, .converter-download:active{
-    border-color: rgb(136, 136, 136);
-}
+    .converter-container h5 {
+        color: white;
+        font-size: 16px;
+        margin: 0;
+    }
 
-.button-upload, .formato-upload {
-    background-color: #47d6c2;
-    color: black;
-    padding: 10px 30px;
-    border-radius: 50px;
-    cursor: pointer;
-    font-weight: 500;
-    text-align: center;
-    width: auto; /* Largura automática para ficar alinhado à esquerda */
-}
+    .button-upload, .formato-upload, .converter-download {
+        padding: 10px 30px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-family: 'Orbitron', sans-serif;
+        font-weight: 500;
+        width: 100%;
+        text-align: center;
+    }
 
-.converter-download {
-    background-color: #fafb63;
-    font-size: 18px;
-    margin-top: 10px;
-    border-radius: 50px;
-    width: 50%;
-    position: relative;
-    left: 25%;
-    top: 20px;
-    height: 50px;
-}
+    .button-upload:active, .formato-upload:active, .converter-download:active {
+        border-color: rgb(136, 136, 136);
+    }
 
-.upload-group1, .upload-group2 {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 5px;
-    width: 100%;
-}
+    .button-upload, .formato-upload {
+        background-color: #47d6c2;
+        color: black;
+        padding: 10px 30px;
+        border-radius: 50px;
+        cursor: pointer;
+        font-weight: 500;
+        text-align: center;
+        width: auto;
+    }
 
-.divs-groups{
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    width: 100%;
-}
+    .converter-download {
+        background-color: #fafb63;
+        font-size: 18px;
+        margin-top: 10px;
+        border-radius: 50px;
+        width: 50%;
+        position: relative;
+        left: 25%;
+        top: 20px;
+        height: 50px;
+    }
 
-.logo-paste-converter{
-    position: absolute;
-    top: 40px;
-    right: 40px;
-}
+    .upload-group1, .upload-group2 {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+        width: 100%;
+    }
 
-.logo-paste-converter img{
-    height: 5vw;
-}
+    .divs-groups {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+    }
 
-.converter-content{
-    margin-top: 1px; /* Espaço para a logo */;
-}
+    .logo-paste-converter {
+        position: absolute;
+        top: 40px;
+        right: 40px;
+    }
 
-/*----------------------Text-------------------------*/
+    .logo-paste-converter img {
+        height: 5vw;
+    }
 
-.text-layout{
-    color: white;
-    flex-direction: column;
-    text-align: center;
-    font-size: 3rem;
-    line-height: 1rem;
-}
+    .converter-content {
+        margin-top: 1px;
+    }
 
-.text-layout h3{
-    font-size: 2rem;
-}
+    /* ----------------------Text------------------------- */
+    .text-layout {
+        color: white;
+        flex-direction: column;
+        text-align: center;
+        font-size: 3rem;
+        line-height: 1rem;
+    }
 
-.space-layout{
-    background-color: white;
-    padding: 2px;
-    margin: 10px 0;
-}
+    .text-layout h3 {
+        font-size: 2rem;
+    }
 
-</style>
+    .space-layout {
+        background-color: white;
+        padding: 2px;
+        margin: 10px 0;
+    }
+    </style>
 
-<script>
+    <script>
     // Função de upload de arquivo
     document.getElementById('upload-button').addEventListener('click', () => {
-      document.getElementById('file-input').click();
+        document.getElementById('file-input').click();
     });
 
     document.getElementById('file-input').addEventListener('change', (event) => {
-      const file = event.target.files[0];
-      if (file) {
-        console.log('Arquivo escolhido:', file.name);
-      }
+        const file = event.target.files[0];
+        if (file) {
+            console.log('Arquivo escolhido:', file.name);
+        }
     });
 
-// Controle da sidebar
-const hamburger = document.getElementById('hamburger');
-const sidebar = document.getElementById('sidebar');
+    // Controle da sidebar
+    const hamburger = document.getElementById('hamburger');
+    const sidebar = document.getElementById('sidebar');
 
-hamburger.addEventListener('click', () => {
-    sidebar.classList.toggle('active');
-});
+    hamburger.addEventListener('click', () => {
+        sidebar.classList.toggle('active');
+    });
 
-// Fechar a sidebar ao clicar fora
-document.addEventListener('click', (event) => {
-    if (!sidebar.contains(event.target) && event.target !== hamburger && !hamburger.contains(event.target)) {
-        sidebar.classList.remove('active');
-    }
-});
-
-</script>
+    // Fechar a sidebar ao clicar fora
+    document.addEventListener('click', (event) => {
+        if (!sidebar.contains(event.target) && 
+            event.target !== hamburger && 
+            !hamburger.contains(event.target)) {
+            sidebar.classList.remove('active');
+        }
+    });
+    </script>
+</body>
+</html>
