@@ -22,6 +22,8 @@ O projeto é ideal para estúdios, profissionais de edição e entusiastas que p
 - **Automação da Conversão:** Geração automática do nome do arquivo de saída com a extensão correspondente.
 - **Feedback Visual:** Área de log que exibe os comandos executados e status da conversão.
 - **Integração com FFmpeg:** Utiliza a robusta ferramenta FFmpeg para garantir conversões rápidas e de alta qualidade.
+- **Sistema de Login/Cadastro:** Interface web com funcionalidades de login e registro de usuários.
+- **Design Moderno:** Interface com estilo futurista e responsivo, usando a fonte Orbitron.
 
 ---
 
@@ -31,6 +33,7 @@ O projeto é ideal para estúdios, profissionais de edição e entusiastas que p
 - **Tkinter:** Biblioteca padrão para interfaces gráficas em Python.
 - **FFmpeg:** Ferramenta de linha de comando para conversão de áudio e vídeo.
 - **Subprocess:** Módulo para invocar comandos do sistema.
+- **HTML/CSS/JavaScript:** Tecnologias para a interface web.
 
 ---
 
@@ -63,13 +66,15 @@ cd flip-sound
 
 ## 📂 Uso
 
+### Aplicação Desktop
+
 Basta executar o script Python para abrir a interface gráfica:
 
 ```bash
 python flip_sound_gui.py
 ```
 
-### Passo a Passo
+#### Passo a Passo
 
 1. **Selecione o Arquivo de Entrada:**  
    Clique no botão **"Selecionar"** e escolha o arquivo de mídia que deseja converter.
@@ -83,6 +88,23 @@ python flip_sound_gui.py
 4. **Visualize o Log:**  
    A área de log exibirá o comando executado e o status da conversão.
 
+### Interface Web
+
+A versão web do FlipSound oferece uma experiência ainda mais avançada:
+
+1. **Navegação Intuitiva:**
+   - Acesse as seções Comunidade, API, Sobre e Ajuda através do menu principal.
+   - Encontre links para nosso GitHub e LinkedIn no topo da página.
+
+2. **Sistema de Usuários:**
+   - Clique no menu hamburguer para acessar o painel lateral.
+   - Faça login ou cadastre-se para acessar funcionalidades exclusivas.
+
+3. **Conversão Simplificada:**
+   - Escolha o arquivo para converter através do botão "Upload".
+   - Selecione o formato desejado no segundo campo.
+   - Clique em "Converter" para iniciar o processo.
+
 ---
 
 ## 🎨 Demonstração
@@ -91,11 +113,42 @@ python flip_sound_gui.py
 
 *Exemplo da interface gráfica do FlipSound em ação.*
 
+### Interface Web
+
+A nova interface web do FlipSound apresenta um design moderno com:
+- Fundo de vídeo animado
+- Painel de conversão elegante
+- Sistema de login/cadastro integrado
+- Menu responsivo com navegação intuitiva
+- Tipografia futurista com a fonte Orbitron
+
+---
+
+## 🔄 Características da Interface Web
+
+- **Design Responsivo:** Adaptável a diferentes tamanhos de tela.
+- **Estilo Futurista:** Cores vibrantes e fonte Orbitron para uma experiência visual única.
+- **Painel Lateral:** Acesso rápido às opções de login e cadastro.
+- **Vídeo de Fundo:** Experiência imersiva com vídeo de fundo.
+- **Animações Interativas:** Efeitos hover e transformações em elementos da interface.
+- **Experiência do Usuário Simplificada:** Interface intuitiva com fluxo de conversão em poucos cliques.
+
+---
+
+## 🔜 Próximas Atualizações
+
+- Integração completa entre interface web e a aplicação desktop.
+- Processamento em lote para múltiplos arquivos.
+- Edição básica de áudio e vídeo antes da conversão.
+- Presets personalizados para configurações de conversão.
+- Modo offline para a interface web.
+- Integrações com serviços de armazenamento em nuvem.
+
 ---
 
 ## 🤝 Contribuições
 
-Contribuições são bem-vindas! Sinta-se à vontade para sugerir melhorias.
+Contribuições são bem-vindas! Sinta-se à vontade para sugerir melhorias ou implementar novas funcionalidades.
 
 ---
 
@@ -114,4 +167,4 @@ Distribuído sob a Licença MIT. Veja o arquivo [LICENSE](https://github.com/Tia
 
 ---
 
-FlipSound é a solução ideal para quem busca uma ferramenta simples, eficiente e moderna para conversão de mídia. Transforme seus arquivos com qualidade e agilidade!🔊🎶🎚️
+FlipSound é a solução ideal para quem busca uma ferramenta simples, eficiente e moderna para conversão de mídia. Transforme seus arquivos com qualidade e agilidade! 🔊🎶🎚️
