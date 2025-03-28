@@ -257,7 +257,6 @@ html, body {
 
 .button-upload, .formato-upload, .converter-download {
     padding: 10px 30px;
-    border: none;
     border-radius: 10px;
     cursor: pointer;
     font-family: 'Orbitron', sans-serif;
@@ -266,11 +265,14 @@ html, body {
     text-align: center;
 }
 
+.button-upload:active, .formato-upload:active, .converter-download:active{
+    border-color: rgb(136, 136, 136);
+}
+
 .button-upload, .formato-upload {
     background-color: #47d6c2;
     color: black;
     padding: 10px 30px;
-    border: none;
     border-radius: 50px;
     cursor: pointer;
     font-weight: 500;
