@@ -29,7 +29,6 @@
             </form>
         </div>
     </div>
-
     <header>
         <div class="nav-bar">
             <nav class="logo">
@@ -118,9 +117,9 @@
 
     /* ---------------------- Sidebar e Menu Hamburguer ---------------------- */
     .sidebar-toggle {
-        position: fixed;
-        top: 30px;
-        left: 30px;
+        position: relative;
+        top: 100px;
+        left: 100px;
         z-index: 1000;
         cursor: pointer;
     }
@@ -137,7 +136,7 @@
         display: block;
         height: 3px;
         width: 100%;
-        background-color: white;
+        background-color: black;
         border-radius: 3px;
         transition: all 0.3s ease;
     }
@@ -185,16 +184,21 @@
         margin-top: 10px;
     }
 
-    .sidebar.active + .sidebar-toggle .hamburger span:nth-child(1) {
+    .sidebar.active ~ .sidebar-toggle .hamburger span:nth-child(1) {
         transform: rotate(45deg) translate(5px, 5px);
     }
 
-    .sidebar.active + .sidebar-toggle .hamburger span:nth-child(2) {
+    .sidebar.active ~ .sidebar-toggle .hamburger span:nth-child(2) {
         opacity: 0;
     }
 
-    .sidebar.active + .sidebar-toggle .hamburger span:nth-child(3) {
+    .sidebar.active ~ .sidebar-toggle .hamburger span:nth-child(3) {
         transform: rotate(-45deg) translate(7px, -6px);
+    }
+
+    /* Adicione esta regra para o hover do hamburger */
+    .hamburger:hover span {
+        background-color: #47d6c2;
     }
 
     /* ------------------------Nav------------------------ */
@@ -220,7 +224,7 @@
     .logo img {
         height: 8vw;
         position: relative;
-        left: 180px;
+        left: 150px;
     }
         
     .logo img:hover {
@@ -394,32 +398,39 @@
     </style>
 
     <script>
-    // Função de upload de arquivo
-    document.getElementById('upload-button').addEventListener('click', () => {
-        document.getElementById('file-input').click();
-    });
+    document.addEventListener('DOMContentLoaded', function() {
+        // Função de upload de arquivo
+        document.getElementById('upload-button')?.addEventListener('click', () => {
+            document.getElementById('file-input')?.click();
+        });
 
-    document.getElementById('file-input').addEventListener('change', (event) => {
-        const file = event.target.files[0];
-        if (file) {
-            console.log('Arquivo escolhido:', file.name);
-        }
-    });
+        document.getElementById('file-input')?.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                console.log('Arquivo escolhido:', file.name);
+            }
+        });
 
-    // Controle da sidebar
-    const hamburger = document.getElementById('hamburger');
-    const sidebar = document.getElementById('sidebar');
+        // Controle da sidebar - verifique se os elementos existem
+        const hamburger = document.getElementById('hamburger');
+        const sidebar = document.getElementById('sidebar');
+        
+        if (hamburger && sidebar) {
+            hamburger.addEventListener('click', (e) => {
+                e.stopPropagation(); // Impede que o evento chegue ao document
+                sidebar.classList.toggle('active');
+            });
 
-    hamburger.addEventListener('click', () => {
-        sidebar.classList.toggle('active');
-    });
-
-    // Fechar a sidebar ao clicar fora
-    document.addEventListener('click', (event) => {
-        if (!sidebar.contains(event.target) && 
-            event.target !== hamburger && 
-            !hamburger.contains(event.target)) {
-            sidebar.classList.remove('active');
+            // Fechar a sidebar ao clicar fora
+            document.addEventListener('click', (event) => {
+                if (!sidebar.contains(event.target) && 
+                    event.target !== hamburger && 
+                    !hamburger.contains(event.target)) {
+                    sidebar.classList.remove('active');
+                }
+            });
+        } else {
+            console.error('Elementos da sidebar não encontrados!');
         }
     });
     </script>
