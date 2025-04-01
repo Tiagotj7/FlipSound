@@ -1,0 +1,22 @@
+{
+    "name": "flip-sound-converter",
+    "version": "1.0.0",
+    "description": "API para conversão de áudio e vídeo para o Flip Sound",
+    "main": "api/converter.js",
+    "scripts": {
+      "start": "node api/converter.js",
+      "dev": "nodemon api/converter.js",
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Tiagotj7.dev",
+    "license": "MIT",
+    "dependencies": {
+      "cors": "^2.8.5",
+      "express": "^4.18.2",
+      "fluent-ffmpeg": "^2.1.2",
+      "multer": "^1.4.5-lts.1"
+    },
+    "devDependencies": {
+      "nodemon": "^3.0.1"
+    }
+  }

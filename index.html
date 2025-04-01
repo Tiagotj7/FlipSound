@@ -547,7 +547,8 @@ footer p{
 </style>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+
+document.addEventListener('DOMContentLoaded', function () {
         // Sidebar toggle functionality
         const hamburger = document.getElementById('hamburger');
         const sidebar = document.getElementById('sidebar');
@@ -606,4 +607,290 @@ footer p{
             }
         });
     });
+
+//---------------------------API----------------------------------------//    
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Elementos da UI
+    const uploadButton = document.getElementById('upload-button');
+    const formatButton = document.getElementById('upload-formato');
+    const convertButton = document.getElementById('download-converter');
+    
+    // Variáveis de estado
+    let selectedFile = null;
+    let selectedFormat = null;
+    const API_URL = 'http://localhost:5000';
+    
+    // Formatos disponíveis
+    const FORMATOS = {
+        "Áudio": ["MP3", "AAC", "WAV", "FLAC", "OGG"],
+        "Vídeo": ["MP4", "MKV", "AVI", "MOV", "WebM", "DivX"]
+    };
+    
+    // Extensões de arquivo
+    const EXTENSOES = {
+        "MP3": ".mp3",
+        "AAC": ".aac",
+        "WAV": ".wav",
+        "FLAC": ".flac",
+        "OGG": ".ogg",
+        "MP4": ".mp4",
+        "MKV": ".mkv",
+        "AVI": ".avi",
+        "MOV": ".mov",
+        "WebM": ".webm",
+        "DivX": ".avi"
+    };
+
+    // 1. Configuração do input de arquivo
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.style.display = 'none';
+    fileInput.accept = 'audio/*,video/*';
+    document.body.appendChild(fileInput);
+
+    uploadButton.addEventListener('click', () => fileInput.click());
+    
+    fileInput.addEventListener('change', (e) => {
+        selectedFile = e.target.files[0];
+        if (selectedFile) {
+            uploadButton.textContent = 
+                selectedFile.name.length > 15 
+                ? selectedFile.name.substring(0, 12) + '...' 
+                : selectedFile.name;
+            uploadButton.style.backgroundColor = '#a3e9dc';
+            formatButton.disabled = false;
+        }
+    });
+
+    // 2. Modal de seleção de formatos
+    formatButton.addEventListener('click', () => {
+        if (!selectedFile) {
+            showNotification('Selecione um arquivo primeiro', true);
+            return;
+        }
+        
+        const modal = document.createElement('div');
+        modal.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        `;
+        
+        const modalContent = document.createElement('div');
+        modalContent.style.cssText = `
+            background: #201f33;
+            border-radius: 15px;
+            padding: 20px;
+            width: 300px;
+            max-width: 90%;
+        `;
+        
+        const title = document.createElement('h3');
+        title.textContent = 'Selecione o Formato';
+        title.style.cssText = 'color: #47d6c2; text-align: center; margin-bottom: 20px;';
+        modalContent.appendChild(title);
+        
+        // Criar seções para Áudio e Vídeo
+        Object.entries(FORMATOS).forEach(([tipo, formatos]) => {
+            const sectionTitle = document.createElement('h4');
+            sectionTitle.textContent = tipo;
+            sectionTitle.style.cssText = 'color: white; margin: 15px 0 10px 0;';
+            modalContent.appendChild(sectionTitle);
+            
+            const formatosContainer = document.createElement('div');
+            formatosContainer.style.cssText = `
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+                margin-bottom: 15px;
+            `;
+            
+            formatos.forEach(formato => {
+                const btn = document.createElement('button');
+                btn.textContent = formato;
+                btn.style.cssText = `
+                    padding: 8px;
+                    background: #2d2b44;
+                    color: white;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    transition: all 0.2s;
+                `;
+                
+                btn.addEventListener('mouseenter', () => {
+                    btn.style.background = '#47d6c2';
+                    btn.style.color = 'black';
+                });
+                
+                btn.addEventListener('mouseleave', () => {
+                    btn.style.background = '#2d2b44';
+                    btn.style.color = 'white';
+                });
+                
+                btn.addEventListener('click', () => {
+                    selectedFormat = `${tipo} - ${formato}`;
+                    formatButton.textContent = formato;
+                    formatButton.style.backgroundColor = '#a3e9dc';
+                    convertButton.disabled = false;
+                    document.body.removeChild(modal);
+                    showNotification(`Formato selecionado: ${formato}`);
+                });
+                
+                formatosContainer.appendChild(btn);
+            });
+            
+            modalContent.appendChild(formatosContainer);
+        });
+        
+        // Botão Fechar
+        const closeBtn = document.createElement('button');
+        closeBtn.textContent = 'Fechar';
+        closeBtn.style.cssText = `
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background: #fafb63;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        `;
+        closeBtn.addEventListener('click', () => document.body.removeChild(modal));
+        modalContent.appendChild(closeBtn);
+        
+        modal.appendChild(modalContent);
+        document.body.appendChild(modal);
+        
+        // Fechar ao clicar fora
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                document.body.removeChild(modal);
+            }
+        });
+    });
+
+    // 3. Conversão e Download Automático
+    convertButton.addEventListener('click', async () => {
+        if (!selectedFile || !selectedFormat) {
+            showNotification('Selecione um arquivo e um formato primeiro', true);
+            return;
+        }
+        
+        const formData = new FormData();
+        formData.append('arquivo', selectedFile);
+        formData.append('formato', selectedFormat);
+        
+        try {
+            // Atualizar UI para mostrar status de conversão
+            convertButton.disabled = true;
+            convertButton.textContent = 'Convertendo...';
+            showNotification('Conversão em andamento...');
+            
+            // Enviar para a API
+            const response = await fetch(`${API_URL}/converter`, {
+                method: 'POST',
+                body: formData
+            });
+            
+            if (!response.ok) {
+                throw new Error('Falha na conversão');
+            }
+            
+            // Obter o blob do arquivo convertido
+            const blob = await response.blob();
+            
+            // Extrair o nome do formato (ex: "MP3" de "Áudio - MP3")
+            const formatoSaida = selectedFormat.split(' - ')[1];
+            const extensao = EXTENSOES[formatoSaida] || '.mp3';
+            
+            // Criar URL para o blob
+            const url = window.URL.createObjectURL(blob);
+            
+            // Criar link de download invisível
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            
+            // Sugerir um nome de arquivo para o download
+            const nomeOriginal = selectedFile.name.split('.')[0];
+            a.download = `${nomeOriginal}_convertido${extensao}`;
+            
+            // Adicionar ao DOM e clicar automaticamente
+            document.body.appendChild(a);
+            a.click();
+            
+            // Limpar
+            window.URL.revokeObjectURL(url);
+            a.remove();
+            
+            // Atualizar UI
+            convertButton.textContent = 'Converter';
+            showNotification('Download iniciado automaticamente!');
+            
+        } catch (error) {
+            console.error('Erro na conversão:', error);
+            showNotification(`Erro: ${error.message}`, true);
+            convertButton.textContent = 'Tentar novamente';
+        } finally {
+            convertButton.disabled = false;
+        }
+    });
+
+    // Função de notificação
+    function showNotification(message, isError = false) {
+        // Remove notificações anteriores
+        const oldNotifications = document.querySelectorAll('.notification');
+        oldNotifications.forEach(n => n.remove());
+        
+        const notification = document.createElement('div');
+        notification.className = 'notification';
+        notification.textContent = message;
+        notification.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 12px 20px;
+            background: ${isError ? '#ff6b6b' : '#47d6c2'};
+            color: ${isError ? 'white' : 'black'};
+            border-radius: 5px;
+            z-index: 1000;
+            animation: fadeIn 0.3s;
+        `;
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+            notification.style.animation = 'fadeOut 0.3s';
+            setTimeout(() => notification.remove(), 300);
+        }, 3000);
+    }
+
+    // Adicionar estilos de animação
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeOut {
+            from { opacity: 1; transform: translateY(0); }
+            to { opacity: 0; transform: translateY(20px); }
+        }
+    `;
+    document.head.appendChild(style);
+
+    // Inicialização
+    formatButton.disabled = true;
+    convertButton.disabled = true;
+});
+
 </script>
