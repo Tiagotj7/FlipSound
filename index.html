@@ -797,7 +797,7 @@ document.addEventListener('DOMContentLoaded', function() {
             showNotification('Conversão em andamento...');
             
             // Enviar para a API
-            const response = await fetch(`${API_URL}/converter`, {
+            const response = await fetch(`${http:127.0.0.1:5000}/converter`, {
                 method: 'POST',
                 body: formData
             });
